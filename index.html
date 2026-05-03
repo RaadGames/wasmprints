@@ -219,7 +219,6 @@
             font-size: 0.9rem;
         }
 
-        /* تنسيق قسم الطلب مع الأيقونات */
         .order-section {
             padding: 0 5% 60px 5%;
             text-align: center;
@@ -250,7 +249,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px; /* مسافة بين الأيقونة والنص */
+            gap: 12px;
             padding: 12px 30px;
             border-radius: 10px;
             text-decoration: none;
@@ -287,7 +286,6 @@
             box-shadow: 0 4px 15px rgba(24, 119, 242, 0.3);
         }
 
-        /* الأسئلة الشائعة */
         .faq-section {
             padding: 0 5% 60px 5%;
             max-width: 800px;
@@ -333,16 +331,37 @@
             border-top: 1px solid rgba(0,0,0,0.05);
         }
 
+        /* تنسيق الفوتر ومعلومات التواصل */
         footer {
             background-color: #fff;
             text-align: center;
-            padding: 30px;
+            padding: 40px 20px;
             border-top: 1px solid #eee;
         }
 
-        footer p {
-            margin: 5px 0;
+        .footer-contact {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
             color: var(--text-light);
+            font-size: 1rem;
+        }
+        
+        .footer-contact a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-contact a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #999;
         }
 
         @media (max-width: 768px) {
@@ -430,7 +449,6 @@
         </div>
     </section>
 
-    <!-- قسم الطلب مع الأيقونات وروابط التواصل -->
     <section class="order-section" id="order">
         <h2 class="section-title">اطلب الآن</h2>
         <div class="glass order-container">
@@ -478,9 +496,14 @@
         </details>
     </section>
 
+    <!-- الفوتر مع معلومات التواصل -->
     <footer>
-        <p>📍 معان، الأردن</p>
-        <p>جميع الحقوق محفوظة &copy; 2026 متجر وسم (Wasm Prints Studio)</p>
+        <div class="footer-contact">
+            <p>الموقع: معان، الأردن</p>
+            <p>هاتف / واتساب: <span dir="ltr">+962 79 224 5494</span></p>
+            <p>البريد الإلكتروني: <a href="mailto:wasmprints@gmail.com">wasmprints@gmail.com</a></p>
+        </div>
+        <p class="copyright">جميع الحقوق محفوظة &copy; 2026 متجر وسم (Wasm Prints Studio)</p>
     </footer>
 
 </body>
