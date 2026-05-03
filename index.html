@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>وسم | متجر منتجات مطبوعة</title>
+    
+    <!-- خطوط جوجل (Cairo) لدعم اللغة العربية بشكل جميل واحترافي -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #E76A4F; /* لون وسم البرتقالي/القرميدي */
+            --bg-color: #FAF6F3;
+            --text-dark: #2d2d2d;
+            --text-light: #666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* تأثيرات الألوان الضبابية في الخلفية (Blur Effects) */
+        .bg-shape1 {
+            position: fixed;
+            top: -15%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: rgba(231, 106, 79, 0.3);
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -1;
+        }
+
+        .bg-shape2 {
+            position: fixed;
+            bottom: -10%;
+            left: -10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(244, 162, 97, 0.3);
+            border-radius: 50%;
+            filter: blur(90px);
+            z-index: -1;
+        }
+
+        /* كلاس تأثير الزجاج (Glassmorphism) */
+        .glass {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        /* الهيدر (شريط التنقل) */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            margin-bottom: 30px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .logo-container img {
+            width: 60px;
+            border-radius: 10px;
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        .logo-text p {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* القسم الرئيسي (Hero Section) */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 40px 5%;
+            margin: 0 5% 50px 5%;
+            border-radius: 24px;
+            gap: 40px;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text h2 {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--text-light);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: #fff;
+            padding: 12px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(231, 106, 79, 0.3);
+        }
+
+        .hero-img {
+            flex: 1;
+            text-align: left;
+        }
+
+        .hero-img img {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        /* المنتجات */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 40px;
+        }
+
+        .products {
+            padding: 0 5% 60px 5%;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* الأسئلة الشائعة (FAQ) */
+        .faq-section {
+            padding: 0 5% 60px 5%;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        details {
+            margin-bottom: 15px;
+            border-radius: 15px;
+            padding: 15px 20px;
+            cursor: pointer;
+        }
+
+        summary {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+            outline: none;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        summary::after {
+            content: '+';
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        details[open] summary::after {
+            content: '-';
+        }
+
+        details p {
+            margin-top: 15px;
+            color: var(--text-light);
+            line-height: 1.6;
+            padding-top: 10px;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* الفوتر */
+        footer {
+            background-color: #fff;
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid #eee;
+        }
+
+        footer p {
+            margin: 5px 0;
+            color: var(--text-light);
+        }
+
+        /* تجاوب الشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-img {
+                margin-top: 30px;
+            }
+            nav ul {
+                display: none; /* يمكن استبدالها بقائمة منسدلة للهاتف */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- أشكال الخلفية الضبابية -->
+    <div class="bg-shape1"></div>
+    <div class="bg-shape2"></div>
+
+    <!-- الهيدر -->
+    <header class="glass">
+        <a href="#" class="logo-container">
+            <img src="mylogo/logo.jpg" alt="شعار وسم">
+            <div class="logo-text">
+                <h1>wasmprints</h1>
+                <p>متجر منتجات مطبوعة</p>
+            </div>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#products">منتجاتنا</a></li>
+                <li><a href="#faq">الأسئلة الشائعة</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- القسم الرئيسي -->
+    <section class="hero glass" id="home">
+        <div class="hero-text">
+            <h2>نحوّل أفكاركم إلى قطع مطبوعة</h2>
+            <p>متجر وسم (Wasm Prints) متخصص في الطباعة حسب الطلب والهدايا المخصصة. نصنعها بحُب من البتراء، الأردن.</p>
+            <a href="#products" class="btn">تصفح منتجاتنا</a>
+        </div>
+        <div class="hero-img">
+            <!-- استخدمنا إحدى صور العرض التي أرفقتها -->
+            <img src="images/image1.jpg" alt="مجموعة منتجات وسم">
+        </div>
+    </section>
+
+    <!-- قسم المنتجات -->
+    <section class="products" id="products">
+        <h2 class="section-title">اختر قطعتك</h2>
+        <div class="grid">
+            <div class="card glass">
+                <img src="items/item1.jpg" alt="مج حافظ للحرارة">
+                <h3>مجات حرارية</h3>
+                <p>حافظ على مشروبك الساخن بتصميمك المفضل</p>
+            </div>
+            <div class="card glass">
+                <img src="items/item3.jpg" alt="كوب سيراميك">
+                <h3>مجات سيراميك</h3>
+                <p>أكواب قهوة بجودة طباعة عالية</p>
+            </div>
+            <div class="card glass">
+                <img src="items/item5.jpg" alt="توت باج">
+                <h3>توت باج</h3>
+                <p>حقائب قماشية عملية وأنيقة</p>
+            </div>
+            <div class="card glass">
+                <img src="items/item2.jpg" alt="مقلمة">
+                <h3>مقلمات</h3>
+                <p>مقلمات مخصصة مطبوعة حسب الطلب</p>
+            </div>
+            <div class="card glass">
+                <img src="items/item4.jpg" alt="فاصل كتب">
+                <h3>فواصل كتب</h3>
+                <p>لمحبي القراءة، فواصل بعباراتك الخاصة</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الأسئلة الشائعة -->
+    <section class="faq-section" id="faq">
+        <h2 class="section-title">الأسئلة الشائعة</h2>
+        
+        <details class="glass">
+            <summary>كم يستغرق تجهيز الطلب؟</summary>
+            <p>لأننا نصنع كل قطعة بحُب وخصيصاً لك، يستغرق تجهيز الطلبات والطباعة من يومين إلى 4 أيام عمل قبل تسليمها لشركة الشحن.</p>
+        </details>
+
+        <details class="glass">
+            <summary>هل يتوفر توصيل لجميع المحافظات؟</summary>
+            <p>نعم، نوفر خدمة التوصيل إلى جميع محافظات المملكة الأردنية الهاشمية بأسعار رمزية.</p>
+        </details>
+
+        <details class="glass">
+            <summary>هل يمكنني طباعة تصميمي أو صورتي الخاصة؟</summary>
+            <p>بالتأكيد! متجر "وسم" متخصص بالطباعة حسب الطلب. يمكنك تزويدنا بالصور، أو الشعارات، أو العبارات التي ترغب بها وسنقوم بتنسيقها وطباعتها بأعلى جودة.</p>
+        </details>
+
+        <details class="glass">
+            <summary>ما هي طرق الدفع المتاحة؟</summary>
+            <p>لتسهيل العملية على عملائنا، نوفر الدفع عند الاستلام، بالإضافة إلى إمكانية الدفع المسبق عبر المحافظ الإلكترونية (مثل كليك زين كاش).</p>
+        </details>
+    </section>
+
+    <!-- الفوتر -->
+    <footer>
+        <p>📍 البتراء، معان، الأردن</p>
+        <p>جميع الحقوق محفوظة &copy; 2026 متجر وسم (Wasm Prints Studio)</p>
+    </footer>
+
+</body>
+</html>
