@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>وسم | متجر منتجات مطبوعة</title>
     
-    <!-- خطوط جوجل (Cairo) لدعم اللغة العربية بشكل جميل واحترافي -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary: #E76A4F; /* لون وسم البرتقالي/القرميدي */
+            --primary: #E76A4F; 
             --bg-color: #FAF6F3;
             --text-dark: #2d2d2d;
             --text-light: #666;
@@ -32,7 +31,6 @@
             position: relative;
         }
 
-        /* تأثيرات الألوان الضبابية في الخلفية (Blur Effects) */
         .bg-shape1 {
             position: fixed;
             top: -15%;
@@ -57,7 +55,6 @@
             z-index: -1;
         }
 
-        /* كلاس تأثير الزجاج (Glassmorphism) */
         .glass {
             background: rgba(255, 255, 255, 0.65);
             backdrop-filter: blur(16px);
@@ -66,7 +63,6 @@
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
         }
 
-        /* الهيدر (شريط التنقل) */
         header {
             position: sticky;
             top: 0;
@@ -118,7 +114,6 @@
             color: var(--primary);
         }
 
-        /* القسم الرئيسي (Hero Section) */
         .hero {
             display: flex;
             align-items: center;
@@ -174,7 +169,6 @@
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
         }
 
-        /* المنتجات */
         .section-title {
             text-align: center;
             font-size: 2.5rem;
@@ -188,7 +182,7 @@
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 30px;
         }
 
@@ -200,10 +194,11 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            height: 100%;
         }
 
         .card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
         }
 
         .card img {
@@ -222,9 +217,42 @@
         .card p {
             color: var(--text-light);
             font-size: 0.9rem;
+            margin-bottom: 20px; /* Space before buttons */
         }
 
-        /* الأسئلة الشائعة (FAQ) */
+        /* تنسيق أزرار الطلب الجديدة */
+        .order-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+            margin-top: auto; /* يدفع الأزرار دائماً لأسفل البطاقة */
+        }
+
+        .btn-order {
+            display: block;
+            width: 100%;
+            padding: 8px 0;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: bold;
+            transition: opacity 0.3s;
+        }
+
+        .btn-order:hover {
+            opacity: 0.85;
+        }
+
+        .whatsapp-btn {
+            background-color: #25D366;
+        }
+
+        .instagram-btn {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+
         .faq-section {
             padding: 0 5% 60px 5%;
             max-width: 800px;
@@ -270,7 +298,6 @@
             border-top: 1px solid rgba(0,0,0,0.05);
         }
 
-        /* الفوتر */
         footer {
             background-color: #fff;
             text-align: center;
@@ -283,7 +310,6 @@
             color: var(--text-light);
         }
 
-        /* تجاوب الشاشات الصغيرة */
         @media (max-width: 768px) {
             .hero {
                 flex-direction: column;
@@ -293,18 +319,16 @@
                 margin-top: 30px;
             }
             nav ul {
-                display: none; /* يمكن استبدالها بقائمة منسدلة للهاتف */
+                display: none; 
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- أشكال الخلفية الضبابية -->
     <div class="bg-shape1"></div>
     <div class="bg-shape2"></div>
 
-    <!-- الهيدر -->
     <header class="glass">
         <a href="#" class="logo-container">
             <img src="mylogo/logo.jpg" alt="شعار وسم">
@@ -322,7 +346,6 @@
         </nav>
     </header>
 
-    <!-- القسم الرئيسي -->
     <section class="hero glass" id="home">
         <div class="hero-text">
             <h2>نحوّل أفكاركم إلى قطع مطبوعة</h2>
@@ -330,44 +353,67 @@
             <a href="#products" class="btn">تصفح منتجاتنا</a>
         </div>
         <div class="hero-img">
-            <!-- استخدمنا إحدى صور العرض التي أرفقتها -->
             <img src="images/image1.jpg" alt="مجموعة منتجات وسم">
         </div>
     </section>
 
-    <!-- قسم المنتجات -->
     <section class="products" id="products">
         <h2 class="section-title">اختر قطعتك</h2>
         <div class="grid">
+            
             <div class="card glass">
                 <img src="items/item1.jpg" alt="مج حافظ للحرارة">
                 <h3>مجات حرارية</h3>
                 <p>حافظ على مشروبك الساخن بتصميمك المفضل</p>
+                <div class="order-buttons">
+                    <a href="https://wa.me/96279224594?text=مرحباً، أود الطلب/الاستفسار عن (مجات حرارية)" target="_blank" class="btn-order whatsapp-btn">اطلب عبر واتساب</a>
+                    <a href="https://instagram.com/wasmprints" target="_blank" class="btn-order instagram-btn">اطلب عبر انستغرام</a>
+                </div>
             </div>
+
             <div class="card glass">
                 <img src="items/item3.jpg" alt="كوب سيراميك">
                 <h3>مجات سيراميك</h3>
                 <p>أكواب قهوة بجودة طباعة عالية</p>
+                <div class="order-buttons">
+                    <a href="https://wa.me/96279224594?text=مرحباً، أود الطلب/الاستفسار عن (مجات سيراميك)" target="_blank" class="btn-order whatsapp-btn">اطلب عبر واتساب</a>
+                    <a href="https://instagram.com/wasmprints" target="_blank" class="btn-order instagram-btn">اطلب عبر انستغرام</a>
+                </div>
             </div>
+
             <div class="card glass">
                 <img src="items/item5.jpg" alt="توت باج">
                 <h3>توت باج</h3>
                 <p>حقائب قماشية عملية وأنيقة</p>
+                <div class="order-buttons">
+                    <a href="https://wa.me/96279224594?text=مرحباً، أود الطلب/الاستفسار عن (توت باج)" target="_blank" class="btn-order whatsapp-btn">اطلب عبر واتساب</a>
+                    <a href="https://instagram.com/wasmprints" target="_blank" class="btn-order instagram-btn">اطلب عبر انستغرام</a>
+                </div>
             </div>
+
             <div class="card glass">
                 <img src="items/item2.jpg" alt="مقلمة">
                 <h3>مقلمات</h3>
                 <p>مقلمات مخصصة مطبوعة حسب الطلب</p>
+                <div class="order-buttons">
+                    <a href="https://wa.me/96279224594?text=مرحباً، أود الطلب/الاستفسار عن (مقلمات)" target="_blank" class="btn-order whatsapp-btn">اطلب عبر واتساب</a>
+                    <a href="https://instagram.com/wasmprints" target="_blank" class="btn-order instagram-btn">اطلب عبر انستغرام</a>
+                </div>
             </div>
+
             <div class="card glass">
                 <img src="items/item4.jpg" alt="فاصل كتب">
                 <h3>فواصل كتب</h3>
                 <p>لمحبي القراءة، فواصل بعباراتك الخاصة</p>
+                <div class="order-buttons">
+                    <a href="https://wa.me/96279224594?text=مرحباً، أود الطلب/الاستفسار عن (فواصل كتب)" target="_blank" class="btn-order whatsapp-btn">اطلب عبر واتساب</a>
+                    <a href="https://instagram.com/wasmprints" target="_blank" class="btn-order instagram-btn">اطلب عبر انستغرام</a>
+                </div>
             </div>
+
         </div>
     </section>
 
-    <!-- قسم الأسئلة الشائعة -->
     <section class="faq-section" id="faq">
         <h2 class="section-title">الأسئلة الشائعة</h2>
         
@@ -392,7 +438,6 @@
         </details>
     </section>
 
-    <!-- الفوتر -->
     <footer>
         <p>📍 معان، الأردن</p>
         <p>جميع الحقوق محفوظة &copy; 2026 متجر وسم (Wasm Prints Studio)</p>
