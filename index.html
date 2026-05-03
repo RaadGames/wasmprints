@@ -219,14 +219,14 @@
             font-size: 0.9rem;
         }
 
-        /* تنسيق قسم الطلب الجديد */
+        /* تنسيق قسم الطلب مع الأيقونات */
         .order-section {
             padding: 0 5% 60px 5%;
             text-align: center;
         }
 
         .order-container {
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
             padding: 40px 30px;
             border-radius: 20px;
@@ -241,22 +241,30 @@
 
         .order-buttons-container {
             display: flex;
+            flex-direction: column;
             gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap; 
+            align-items: center;
         }
 
         .btn-order {
-            display: inline-block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px; /* مسافة بين الأيقونة والنص */
             padding: 12px 30px;
             border-radius: 10px;
             text-decoration: none;
             color: #fff;
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: bold;
             transition: transform 0.3s, opacity 0.3s;
-            flex: 1;
-            min-width: 200px;
+            width: 100%;
+            max-width: 350px;
+        }
+
+        .btn-order img {
+            width: 24px;
+            height: 24px;
         }
 
         .btn-order:hover {
@@ -272,6 +280,11 @@
         .instagram-btn {
             background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
             box-shadow: 0 4px 15px rgba(220, 39, 67, 0.3);
+        }
+
+        .facebook-btn {
+            background-color: #1877F2;
+            box-shadow: 0 4px 15px rgba(24, 119, 242, 0.3);
         }
 
         /* الأسئلة الشائعة */
@@ -343,9 +356,6 @@
             nav ul {
                 display: none; 
             }
-            .order-buttons-container {
-                flex-direction: column;
-            }
         }
     </style>
 </head>
@@ -383,7 +393,6 @@
         </div>
     </section>
 
-    <!-- قسم المنتجات بدون أزرار الطلب -->
     <section class="products" id="products">
         <h2 class="section-title">اختر قطعتك</h2>
         <div class="grid">
@@ -421,14 +430,26 @@
         </div>
     </section>
 
-    <!-- قسم الطلب المخصص الجديد -->
+    <!-- قسم الطلب مع الأيقونات وروابط التواصل -->
     <section class="order-section" id="order">
         <h2 class="section-title">اطلب الآن</h2>
         <div class="glass order-container">
-            <p>هل أعجبتك منتجاتنا؟ تصفح الكتالوج واطلب مباشرة عبر الواتساب أو تواصل معنا على انستغرام:</p>
+            <p>هل أعجبتك منتجاتنا؟ تصفح الكتالوج واطلب مباشرة أو تواصل معنا عبر حساباتنا:</p>
             <div class="order-buttons-container">
-                <a href="https://wa.me/c/962792245494" target="_blank" class="btn-order whatsapp-btn">تصفح الكتالوج واطلب (واتساب)</a>
-                <a href="https://instagram.com/wasmprints" target="_blank" class="btn-order instagram-btn">راسلنا على انستغرام</a>
+                <a href="https://wa.me/c/962792245494" target="_blank" class="btn-order whatsapp-btn">
+                    <img src="icons/icons8-whatsapp-50.png" alt="WhatsApp Icon">
+                    تصفح الكتالوج واطلب (واتساب)
+                </a>
+                
+                <a href="https://instagram.com/wasmprints" target="_blank" class="btn-order instagram-btn">
+                    <img src="icons/icons8-instagram-50.png" alt="Instagram Icon">
+                    راسلنا على انستغرام
+                </a>
+
+                <a href="https://www.facebook.com/wasmprints/" target="_blank" class="btn-order facebook-btn">
+                    <img src="icons/icons8-facebook-50.png" alt="Facebook Icon">
+                    تابعنا على فيسبوك
+                </a>
             </div>
         </div>
     </section>
