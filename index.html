@@ -177,7 +177,7 @@
         }
 
         .products {
-            padding: 0 5% 60px 5%;
+            padding: 0 5% 40px 5%;
         }
 
         .grid {
@@ -217,41 +217,64 @@
         .card p {
             color: var(--text-light);
             font-size: 0.9rem;
-            margin-bottom: 20px; 
         }
 
-        .order-buttons {
+        /* تنسيق قسم الطلب الجديد */
+        .order-section {
+            padding: 0 5% 60px 5%;
+            text-align: center;
+        }
+
+        .order-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px 30px;
+            border-radius: 20px;
+        }
+
+        .order-container p {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .order-buttons-container {
             display: flex;
-            flex-direction: column;
-            gap: 10px;
-            width: 100%;
-            margin-top: auto; 
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap; 
         }
 
         .btn-order {
-            display: block;
-            width: 100%;
-            padding: 8px 0;
+            display: inline-block;
+            padding: 12px 30px;
             border-radius: 10px;
             text-decoration: none;
             color: #fff;
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-weight: bold;
-            transition: opacity 0.3s;
+            transition: transform 0.3s, opacity 0.3s;
+            flex: 1;
+            min-width: 200px;
         }
 
         .btn-order:hover {
-            opacity: 0.85;
+            opacity: 0.9;
+            transform: translateY(-3px);
         }
 
         .whatsapp-btn {
             background-color: #25D366;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
         }
 
         .instagram-btn {
             background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            box-shadow: 0 4px 15px rgba(220, 39, 67, 0.3);
         }
 
+        /* الأسئلة الشائعة */
         .faq-section {
             padding: 0 5% 60px 5%;
             max-width: 800px;
@@ -320,6 +343,9 @@
             nav ul {
                 display: none; 
             }
+            .order-buttons-container {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -340,6 +366,7 @@
             <ul>
                 <li><a href="#home">الرئيسية</a></li>
                 <li><a href="#products">منتجاتنا</a></li>
+                <li><a href="#order">الطلب</a></li>
                 <li><a href="#faq">الأسئلة الشائعة</a></li>
             </ul>
         </nav>
@@ -356,6 +383,7 @@
         </div>
     </section>
 
+    <!-- قسم المنتجات بدون أزرار الطلب -->
     <section class="products" id="products">
         <h2 class="section-title">اختر قطعتك</h2>
         <div class="grid">
@@ -364,52 +392,44 @@
                 <img src="items/item1.jpg" alt="مج حافظ للحرارة">
                 <h3>مجات حرارية</h3>
                 <p>حافظ على مشروبك الساخن بتصميمك المفضل</p>
-                <div class="order-buttons">
-                    <a href="https://wa.me/c/962792245494" target="_blank" class="btn-order whatsapp-btn">اطلب عبر واتساب</a>
-                    <a href="https://instagram.com/wasmprints" target="_blank" class="btn-order instagram-btn">اطلب عبر انستغرام</a>
-                </div>
             </div>
 
             <div class="card glass">
                 <img src="items/item3.jpg" alt="كوب سيراميك">
                 <h3>مجات سيراميك</h3>
                 <p>أكواب قهوة بجودة طباعة عالية</p>
-                <div class="order-buttons">
-                    <a href="https://wa.me/c/962792245494" target="_blank" class="btn-order whatsapp-btn">اطلب عبر واتساب</a>
-                    <a href="https://instagram.com/wasmprints" target="_blank" class="btn-order instagram-btn">اطلب عبر انستغرام</a>
-                </div>
             </div>
 
             <div class="card glass">
                 <img src="items/item5.jpg" alt="توت باج">
                 <h3>توت باج</h3>
                 <p>حقائب قماشية عملية وأنيقة</p>
-                <div class="order-buttons">
-                    <a href="https://wa.me/c/962792245494" target="_blank" class="btn-order whatsapp-btn">اطلب عبر واتساب</a>
-                    <a href="https://instagram.com/wasmprints" target="_blank" class="btn-order instagram-btn">اطلب عبر انستغرام</a>
-                </div>
             </div>
 
             <div class="card glass">
                 <img src="items/item2.jpg" alt="مقلمة">
                 <h3>مقلمات</h3>
                 <p>مقلمات مخصصة مطبوعة حسب الطلب</p>
-                <div class="order-buttons">
-                    <a href="https://wa.me/c/962792245494" target="_blank" class="btn-order whatsapp-btn">اطلب عبر واتساب</a>
-                    <a href="https://instagram.com/wasmprints" target="_blank" class="btn-order instagram-btn">اطلب عبر انستغرام</a>
-                </div>
             </div>
 
             <div class="card glass">
                 <img src="items/item4.jpg" alt="فاصل كتب">
                 <h3>فواصل كتب</h3>
                 <p>لمحبي القراءة، فواصل بعباراتك الخاصة</p>
-                <div class="order-buttons">
-                    <a href="https://wa.me/c/962792245494" target="_blank" class="btn-order whatsapp-btn">اطلب عبر واتساب</a>
-                    <a href="https://instagram.com/wasmprints" target="_blank" class="btn-order instagram-btn">اطلب عبر انستغرام</a>
-                </div>
             </div>
 
+        </div>
+    </section>
+
+    <!-- قسم الطلب المخصص الجديد -->
+    <section class="order-section" id="order">
+        <h2 class="section-title">اطلب الآن</h2>
+        <div class="glass order-container">
+            <p>هل أعجبتك منتجاتنا؟ تصفح الكتالوج واطلب مباشرة عبر الواتساب أو تواصل معنا على انستغرام:</p>
+            <div class="order-buttons-container">
+                <a href="https://wa.me/c/962792245494" target="_blank" class="btn-order whatsapp-btn">تصفح الكتالوج واطلب (واتساب)</a>
+                <a href="https://instagram.com/wasmprints" target="_blank" class="btn-order instagram-btn">راسلنا على انستغرام</a>
+            </div>
         </div>
     </section>
 
