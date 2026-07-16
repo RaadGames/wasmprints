@@ -1,510 +1,475 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>وسم | متجر منتجات مطبوعة</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --primary: #E76A4F; 
-            --bg-color: #FAF6F3;
-            --text-dark: #2d2d2d;
-            --text-light: #666;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>وسم | متجر منتجات مطبوعة</title>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Cairo', sans-serif;
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Lalezar&display=swap" rel="stylesheet">
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-dark);
-            overflow-x: hidden;
-            position: relative;
-        }
+<style>
+    :root {
+        --bg-1: #fffbf1;
+        --bg-2: #fff3de;
+        --surface: rgba(255,255,255,0.6);
+        --surface-strong: rgba(255,255,255,0.85);
+        --surface-border: rgba(255,255,255,0.92);
+        --ink: #17263a;
+        --ink-soft: #3d5064;
+        --ink-muted: #71818f;
+        --navy: #0B4C8C;
+        --navy-deep: #073a6b;
+        --orange: #FF5A36;
+        --orange-deep: #dd3e1e;
+        --gold: #FBCD5B;
+        --teal: #3CACA6;
+        --radius-lg: 28px;
+        --radius-md: 20px;
+        --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
 
-        .bg-shape1 {
-            position: fixed;
-            top: -15%;
-            right: -10%;
-            width: 500px;
-            height: 500px;
-            background: rgba(231, 106, 79, 0.3);
-            border-radius: 50%;
-            filter: blur(100px);
-            z-index: -1;
-        }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
 
-        .bg-shape2 {
-            position: fixed;
-            bottom: -10%;
-            left: -10%;
-            width: 400px;
-            height: 400px;
-            background: rgba(244, 162, 97, 0.3);
-            border-radius: 50%;
-            filter: blur(90px);
-            z-index: -1;
-        }
+    html { scroll-behavior: smooth; scroll-padding-top: 100px; }
 
-        .glass {
-            background: rgba(255, 255, 255, 0.65);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
-        }
+    body {
+        background: linear-gradient(160deg, var(--bg-1) 0%, var(--bg-2) 100%);
+        color: var(--ink);
+        overflow-x: hidden;
+        position: relative;
+        min-height: 100vh;
+    }
 
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 5%;
-            margin-bottom: 30px;
-        }
+    ::selection { background: var(--orange); color: #fff; }
 
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            text-decoration: none;
-        }
+    /* ---------- Ambient mesh background ---------- */
+    .aurora { position: fixed; inset: 0; z-index: -2; overflow: hidden; }
+    .blob { position: absolute; border-radius: 50%; filter: blur(85px); opacity: 0.4; will-change: transform; }
+    .blob1 { width: 560px; height: 560px; background: radial-gradient(circle, var(--orange), transparent 70%); top: -16%; right: -10%; animation: drift1 28s ease-in-out infinite; }
+    .blob2 { width: 500px; height: 500px; background: radial-gradient(circle, var(--teal), transparent 70%); bottom: -14%; left: -8%; animation: drift2 34s ease-in-out infinite; }
+    .blob3 { width: 380px; height: 380px; background: radial-gradient(circle, var(--gold), transparent 70%); top: 45%; left: 50%; animation: drift3 24s ease-in-out infinite; opacity: 0.35; }
 
-        .logo-container img {
-            width: 60px;
-            border-radius: 10px;
-        }
+    @keyframes drift1 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-50px, 50px) scale(1.12); } }
+    @keyframes drift2 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(45px, -35px) scale(1.08); } }
+    @keyframes drift3 { 0%,100% { transform: translate(0,0) scale(0.9); opacity: 0.28; } 50% { transform: translate(-25px, -40px) scale(1.15); opacity: 0.4; } }
 
-        .logo-text h1 {
-            font-size: 1.5rem;
-            color: var(--primary);
-            font-weight: 800;
-        }
+    /* ---------- Glass ---------- */
+    .glass {
+        background: var(--surface);
+        backdrop-filter: blur(22px) saturate(160%);
+        -webkit-backdrop-filter: blur(22px) saturate(160%);
+        border: 1px solid var(--surface-border);
+        box-shadow: 0 10px 36px rgba(11,76,140,0.1), inset 0 1px 0 rgba(255,255,255,0.7);
+    }
 
-        .logo-text p {
-            font-size: 0.8rem;
-            color: var(--text-light);
-        }
+    /* ---------- Reveal on scroll ---------- */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+    .reveal.in-view { opacity: 1; transform: translateY(0); }
 
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 25px;
-        }
+    /* ---------- Header ---------- */
+    header {
+        position: sticky; top: 14px; z-index: 100;
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 14px 28px; margin: 14px 5% 40px 5%; border-radius: 100px;
+        transition: padding 0.4s var(--ease), background 0.4s var(--ease);
+    }
+    header.scrolled { padding: 9px 26px; background: rgba(255,255,255,0.8); }
 
-        nav a {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 600;
-            transition: color 0.3s;
-        }
+    .logo-container { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+    .logo-container img { width: 46px; height: 46px; object-fit: cover; border-radius: 12px; box-shadow: 0 0 0 2px rgba(255,255,255,0.8); }
+    .logo-text h1 {
+        font-family: 'Lalezar', sans-serif; font-size: 1.5rem; letter-spacing: 0.5px;
+        background: linear-gradient(90deg, var(--orange-deep), var(--gold), var(--orange-deep));
+        background-size: 220% auto; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+        animation: shine 6s linear infinite;
+    }
+    .logo-text p { font-size: 0.72rem; color: var(--ink-muted); letter-spacing: 0.5px; }
+    @keyframes shine { to { background-position: -220% center; } }
 
-        nav a:hover {
-            color: var(--primary);
-        }
+    nav ul { display: flex; list-style: none; gap: 8px; }
+    nav a { text-decoration: none; color: var(--ink-soft); font-weight: 600; font-size: 0.95rem; padding: 8px 16px; border-radius: 100px; transition: color 0.3s, background 0.3s; }
+    nav a:hover { color: var(--navy-deep); background: rgba(11,76,140,0.08); }
 
-        .hero {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 40px 5%;
-            margin: 0 5% 50px 5%;
-            border-radius: 24px;
-            gap: 40px;
-        }
+    /* ---------- Hero ---------- */
+    .hero { display: flex; align-items: center; justify-content: space-between; padding: 56px 6%; margin: 0 5% 90px 5%; border-radius: var(--radius-lg); gap: 50px; position: relative; overflow: hidden; }
+    .hero::before {
+        content: ''; position: absolute; inset: 0;
+        background: radial-gradient(circle at var(--mx,70%) var(--my,30%), rgba(255,90,54,0.12), transparent 55%);
+        pointer-events: none; transition: background 0.2s;
+    }
+    .eyebrow {
+        display: inline-flex; align-items: center; gap: 8px; font-size: 0.8rem; font-weight: 700;
+        color: #1a8c85; letter-spacing: 1.5px; margin-bottom: 18px;
+        padding: 6px 16px; border-radius: 100px; border: 1px solid rgba(60,172,166,0.35); background: rgba(60,172,166,0.1);
+    }
+    .eyebrow::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 10px var(--teal); animation: pulse 1.8s ease-in-out infinite; }
+    @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.7); } }
 
-        .hero-text {
-            flex: 1;
-        }
+    .hero-text { flex: 1.05; position: relative; z-index: 1; }
+    .hero-text h2 { font-family: 'Lalezar', sans-serif; font-weight: 400; font-size: clamp(2.4rem, 4.2vw, 3.6rem); line-height: 1.25; margin-bottom: 20px; color: var(--ink); }
+    .hero-text h2 span {
+        background: linear-gradient(90deg, var(--navy-deep), var(--orange));
+        -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero-text p { font-size: 1.1rem; margin-bottom: 34px; color: var(--ink-muted); max-width: 480px; line-height: 1.8; }
 
-        .hero-text h2 {
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 15px;
-            line-height: 1.2;
-        }
+    .btn {
+        display: inline-flex; align-items: center; gap: 10px; position: relative; overflow: hidden;
+        background: linear-gradient(135deg, var(--orange), var(--orange-deep));
+        color: #fff; padding: 15px 38px; border-radius: 100px; text-decoration: none; font-weight: 800; font-size: 1.05rem;
+        box-shadow: 0 12px 28px rgba(255,90,54,0.35); transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+    }
+    .btn::before {
+        content: ''; position: absolute; top: 0; right: -100%; width: 60%; height: 100%;
+        background: linear-gradient(120deg, transparent, rgba(255,255,255,0.55), transparent);
+        transform: skewX(-20deg); transition: right 0.7s var(--ease);
+    }
+    .btn:hover::before { right: 130%; }
+    .btn:hover { transform: translateY(-4px); box-shadow: 0 18px 36px rgba(255,90,54,0.45); }
 
-        .hero-text p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            color: var(--text-light);
-        }
+    .hero-img { flex: 1; position: relative; display: flex; justify-content: center; z-index: 1; }
+    .hero-img-glow { position: absolute; width: 80%; height: 80%; border-radius: 50%; background: radial-gradient(circle, rgba(251,205,91,0.45), transparent 70%); filter: blur(50px); z-index: -1; animation: floaty 5s ease-in-out infinite; }
+    .hero-img img {
+        max-width: 100%; border-radius: var(--radius-md);
+        box-shadow: 0 30px 60px rgba(11,76,140,0.18), 0 0 0 1px rgba(255,255,255,0.7);
+        animation: floaty 5s ease-in-out infinite; transition: transform 0.2s var(--ease);
+    }
+    @keyframes floaty { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-16px); } }
 
-        .btn {
-            display: inline-block;
-            background-color: var(--primary);
-            color: #fff;
-            padding: 12px 35px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
+    /* ---------- Section titles ---------- */
+    .section-head { text-align: center; margin-bottom: 54px; }
+    .section-tag { font-size: 0.8rem; font-weight: 700; letter-spacing: 2px; color: var(--navy-deep); margin-bottom: 10px; display: block; }
+    .section-title { font-family: 'Lalezar', sans-serif; font-weight: 400; font-size: clamp(1.9rem, 3vw, 2.6rem); color: var(--ink); }
 
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(231, 106, 79, 0.3);
-        }
+    /* ---------- Products ---------- */
+    .products { padding: 0 5% 60px 5%; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 26px; }
 
-        .hero-img {
-            flex: 1;
-            text-align: left;
-        }
+    .card {
+        border-radius: var(--radius-md); padding: 26px 20px 28px; text-align: center;
+        display: flex; flex-direction: column; align-items: center;
+        transition: transform 0.45s var(--ease), box-shadow 0.45s var(--ease); transform-style: preserve-3d; position: relative;
+    }
+    .card:hover { box-shadow: 0 24px 50px rgba(11,76,140,0.16), 0 0 0 1px rgba(255,90,54,0.3); }
+    .card-img-wrap {
+        width: 150px; height: 150px; border-radius: 18px; overflow: hidden; margin-bottom: 18px; position: relative;
+        background: #fff; box-shadow: inset 0 0 0 1px rgba(11,76,140,0.08);
+    }
+    .card-img-wrap::after {
+        content: ''; position: absolute; inset: 0; border-radius: 18px;
+        background: linear-gradient(135deg, rgba(251,205,91,0.28), transparent 60%);
+        opacity: 0; transition: opacity 0.4s;
+    }
+    .card:hover .card-img-wrap::after { opacity: 1; }
+    .card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); }
+    .card:hover img { transform: scale(1.12); }
+    .card h3 { color: var(--ink); margin-bottom: 8px; font-size: 1.15rem; font-weight: 800; }
+    .card p { color: var(--ink-muted); font-size: 0.9rem; line-height: 1.6; }
 
-        .hero-img img {
-            max-width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-        }
+    /* ---------- Order ---------- */
+    .order-section { padding: 0 5% 70px 5%; text-align: center; }
+    .order-container { max-width: 680px; margin: 0 auto; padding: 48px 34px; border-radius: var(--radius-lg); position: relative; overflow: hidden; }
+    .order-container::before {
+        content: ''; position: absolute; inset: -2px; border-radius: var(--radius-lg); padding: 2px;
+        background: conic-gradient(from var(--angle,0deg), var(--orange), var(--gold), var(--teal), var(--orange));
+        -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0.4; animation: spin 6s linear infinite;
+    }
+    @property --angle { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+    @keyframes spin { to { --angle: 360deg; } }
 
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 40px;
-        }
+    .order-container p.lead { font-size: 1.15rem; margin-bottom: 30px; color: var(--ink); font-weight: 600; line-height: 1.7; position: relative; }
+    .order-buttons-container { display: flex; flex-direction: column; gap: 15px; align-items: center; position: relative; }
 
-        .products {
-            padding: 0 5% 40px 5%;
-        }
+    .btn-order {
+        display: flex; align-items: center; justify-content: center; gap: 12px; padding: 14px 30px; border-radius: 14px;
+        text-decoration: none; color: #fff; font-size: 1.05rem; font-weight: 800; width: 100%; max-width: 360px;
+        position: relative; overflow: hidden; transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+    }
+    .btn-order::before {
+        content: ''; position: absolute; top: 0; right: -100%; width: 60%; height: 100%;
+        background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+        transform: skewX(-20deg); transition: right 0.7s var(--ease);
+    }
+    .btn-order:hover::before { right: 130%; }
+    .btn-order img { width: 22px; height: 22px; filter: brightness(0) invert(1); }
+    .btn-order:hover { transform: translateY(-4px) scale(1.015); }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 30px;
-        }
+    .whatsapp-btn { background: linear-gradient(135deg, #25D366, #1aa64f); box-shadow: 0 8px 22px rgba(37,211,102,0.25); }
+    .instagram-btn { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); box-shadow: 0 8px 22px rgba(220,39,67,0.25); }
+    .facebook-btn { background: linear-gradient(135deg, var(--navy), var(--navy-deep)); box-shadow: 0 8px 22px rgba(11,76,140,0.25); }
 
-        .card {
-            border-radius: 20px;
-            padding: 20px;
-            text-align: center;
-            transition: transform 0.3s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: 100%;
-        }
+    /* ---------- FAQ ---------- */
+    .faq-section { padding: 0 5% 70px 5%; max-width: 800px; margin: auto; }
+    .faq-item { border-radius: var(--radius-md); margin-bottom: 14px; overflow: hidden; }
+    .faq-question { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 26px; cursor: pointer; user-select: none; }
+    .faq-question span.q-text { font-size: 1.05rem; font-weight: 700; color: var(--ink); }
+    .faq-icon {
+        flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%; position: relative;
+        background: rgba(11,76,140,0.1);
+        transition: transform 0.4s var(--ease), background 0.4s;
+    }
+    .faq-icon::before, .faq-icon::after {
+        content: ''; position: absolute; top: 50%; left: 50%; background: var(--navy-deep);
+        transition: background 0.4s;
+    }
+    .faq-icon::before { width: 12px; height: 2px; transform: translate(-50%, -50%); }
+    .faq-icon::after { width: 2px; height: 12px; transform: translate(-50%, -50%); }
+    .faq-item.open .faq-icon { transform: rotate(135deg); background: var(--orange); }
+    .faq-item.open .faq-icon::before, .faq-item.open .faq-icon::after { background: #fff; }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.5s var(--ease); }
+    .faq-answer p { padding: 0 26px 22px 26px; color: var(--ink-muted); line-height: 1.8; border-top: 1px solid rgba(11,76,140,0.1); padding-top: 16px; margin-top: -2px; }
 
-        .card:hover {
-            transform: translateY(-5px);
-        }
+    /* ---------- Footer ---------- */
+    footer { position: relative; text-align: center; padding: 60px 20px 34px; margin-top: 20px; }
+    footer::before {
+        content: ''; position: absolute; top: 0; left: 10%; right: 10%; height: 1px;
+        background: linear-gradient(90deg, transparent, var(--orange), var(--teal), transparent); opacity: 0.45;
+    }
+    .footer-logo { font-family: 'Lalezar', sans-serif; font-size: 1.4rem; color: var(--ink); margin-bottom: 18px; }
+    .footer-contact { margin-bottom: 22px; display: flex; flex-direction: column; gap: 10px; color: var(--ink-muted); font-size: 0.98rem; }
+    .footer-contact a { color: var(--ink-muted); text-decoration: none; transition: color 0.3s; }
+    .footer-contact a:hover { color: var(--orange-deep); }
+    .copyright { margin-top: 10px; font-size: 0.85rem; color: var(--ink-muted); opacity: 0.75; }
 
-        .card img {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 15px;
-            margin-bottom: 15px;
-        }
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+    }
 
-        .card h3 {
-            color: var(--text-dark);
-            margin-bottom: 10px;
-        }
-
-        .card p {
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        .order-section {
-            padding: 0 5% 60px 5%;
-            text-align: center;
-        }
-
-        .order-container {
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 40px 30px;
-            border-radius: 20px;
-        }
-
-        .order-container p {
-            font-size: 1.2rem;
-            margin-bottom: 25px;
-            color: var(--text-dark);
-            font-weight: 600;
-        }
-
-        .order-buttons-container {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            align-items: center;
-        }
-
-        .btn-order {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            padding: 12px 30px;
-            border-radius: 10px;
-            text-decoration: none;
-            color: #fff;
-            font-size: 1.1rem;
-            font-weight: bold;
-            transition: transform 0.3s, opacity 0.3s;
-            width: 100%;
-            max-width: 350px;
-        }
-
-        .btn-order img {
-            width: 24px;
-            height: 24px;
-        }
-
-        .btn-order:hover {
-            opacity: 0.9;
-            transform: translateY(-3px);
-        }
-
-        .whatsapp-btn {
-            background-color: #25D366;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
-        }
-
-        .instagram-btn {
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-            box-shadow: 0 4px 15px rgba(220, 39, 67, 0.3);
-        }
-
-        .facebook-btn {
-            background-color: #1877F2;
-            box-shadow: 0 4px 15px rgba(24, 119, 242, 0.3);
-        }
-
-        .faq-section {
-            padding: 0 5% 60px 5%;
-            max-width: 800px;
-            margin: auto;
-        }
-
-        details {
-            margin-bottom: 15px;
-            border-radius: 15px;
-            padding: 15px 20px;
-            cursor: pointer;
-        }
-
-        summary {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--primary);
-            outline: none;
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        summary::-webkit-details-marker {
-            display: none;
-        }
-        
-        summary::after {
-            content: '+';
-            font-size: 1.5rem;
-            line-height: 1;
-        }
-
-        details[open] summary::after {
-            content: '-';
-        }
-
-        details p {
-            margin-top: 15px;
-            color: var(--text-light);
-            line-height: 1.6;
-            padding-top: 10px;
-            border-top: 1px solid rgba(0,0,0,0.05);
-        }
-
-        /* تنسيق الفوتر ومعلومات التواصل */
-        footer {
-            background-color: #fff;
-            text-align: center;
-            padding: 40px 20px;
-            border-top: 1px solid #eee;
-        }
-
-        .footer-contact {
-            margin-bottom: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            color: var(--text-light);
-            font-size: 1rem;
-        }
-        
-        .footer-contact a {
-            color: var(--text-light);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-contact a:hover {
-            color: var(--primary);
-        }
-
-        .copyright {
-            margin-top: 20px;
-            font-size: 0.9rem;
-            color: #999;
-        }
-
-        @media (max-width: 768px) {
-            .hero {
-                flex-direction: column;
-                text-align: center;
-            }
-            .hero-img {
-                margin-top: 30px;
-            }
-            nav ul {
-                display: none; 
-            }
-        }
-    </style>
+    @media (max-width: 768px) {
+        .hero { flex-direction: column; text-align: center; padding: 40px 6%; }
+        .hero-text p { margin-left: auto; margin-right: auto; }
+        .hero-img { margin-top: 30px; }
+        nav ul { display: none; }
+        header { border-radius: 24px; }
+    }
+</style>
 </head>
 <body>
 
-    <div class="bg-shape1"></div>
-    <div class="bg-shape2"></div>
+<div class="aurora">
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+</div>
 
-    <header class="glass">
-        <a href="#" class="logo-container">
-            <img src="mylogo/logo.jpg" alt="شعار وسم">
-            <div class="logo-text">
-                <h1>wasmprints</h1>
-                <p>متجر منتجات مطبوعة</p>
-            </div>
-        </a>
-        <nav>
-            <ul>
-                <li><a href="#home">الرئيسية</a></li>
-                <li><a href="#products">منتجاتنا</a></li>
-                <li><a href="#order">الطلب</a></li>
-                <li><a href="#faq">الأسئلة الشائعة</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <section class="hero glass" id="home">
-        <div class="hero-text">
-            <h2>نحوّل أفكاركم إلى قطع مطبوعة</h2>
-            <p>متجر وسم (Wasm Prints) متخصص في الطباعة حسب الطلب والهدايا المخصصة. نصنعها بحُب من البتراء، الأردن.</p>
-            <a href="#products" class="btn">تصفح منتجاتنا</a>
+<header class="glass" id="siteHeader">
+    <a href="#" class="logo-container">
+        <img src="mylogo/logo.jpg" alt="شعار وسم">
+        <div class="logo-text">
+            <h1>wasmprints</h1>
+            <p>متجر منتجات مطبوعة</p>
         </div>
-        <div class="hero-img">
-            <img src="images/image1.jpg" alt="مجموعة منتجات وسم">
-        </div>
-    </section>
+    </a>
+    <nav>
+        <ul>
+            <li><a href="#home">الرئيسية</a></li>
+            <li><a href="#products">منتجاتنا</a></li>
+            <li><a href="#order">الطلب</a></li>
+            <li><a href="#faq">الأسئلة الشائعة</a></li>
+        </ul>
+    </nav>
+</header>
 
-    <section class="products" id="products">
+<section class="hero glass" id="home">
+    <div class="hero-text">
+        <span class="eyebrow">صناعة أردنية بحُب</span>
+        <h2>نحوّل <span>أفكاركم</span> إلى قطع مطبوعة تُروى قصتها</h2>
+        <p>متجر وسم (Wasm Prints) متخصص في الطباعة حسب الطلب والهدايا المخصصة. نصنعها بحُب من معان، الأردن.</p>
+        <a href="#products" class="btn">تصفح منتجاتنا ←</a>
+    </div>
+    <div class="hero-img">
+        <div class="hero-img-glow"></div>
+        <img src="images/image1.jpg" alt="مجموعة منتجات وسم" id="heroImg">
+    </div>
+</section>
+
+<section class="products" id="products">
+    <div class="section-head reveal">
+        <span class="section-tag">المنتجات</span>
         <h2 class="section-title">اختر قطعتك</h2>
-        <div class="grid">
-            
-            <div class="card glass">
-                <img src="items/item1.jpg" alt="مج حافظ للحرارة">
-                <h3>مجات حرارية</h3>
-                <p>حافظ على مشروبك الساخن بتصميمك المفضل</p>
-            </div>
+    </div>
+    <div class="grid">
 
-            <div class="card glass">
-                <img src="items/item3.jpg" alt="كوب سيراميك">
-                <h3>مجات سيراميك</h3>
-                <p>أكواب قهوة بجودة طباعة عالية</p>
-            </div>
-
-            <div class="card glass">
-                <img src="items/item5.jpg" alt="توت باج">
-                <h3>توت باج</h3>
-                <p>حقائب قماشية عملية وأنيقة</p>
-            </div>
-
-            <div class="card glass">
-                <img src="items/item2.jpg" alt="مقلمة">
-                <h3>مقلمات</h3>
-                <p>مقلمات مخصصة مطبوعة حسب الطلب</p>
-            </div>
-
-            <div class="card glass">
-                <img src="items/item4.jpg" alt="فاصل كتب">
-                <h3>فواصل كتب</h3>
-                <p>لمحبي القراءة، فواصل بعباراتك الخاصة</p>
-            </div>
-
+        <div class="card glass reveal">
+            <div class="card-img-wrap"><img src="items/item1.jpg" alt="مج حافظ للحرارة"></div>
+            <h3>مجات حرارية</h3>
+            <p>حافظ على مشروبك الساخن بتصميمك المفضل</p>
         </div>
-    </section>
 
-    <section class="order-section" id="order">
-        <h2 class="section-title">اطلب الآن</h2>
-        <div class="glass order-container">
-            <p>هل أعجبتك منتجاتنا؟ تصفح الكتالوج واطلب مباشرة أو تواصل معنا عبر حساباتنا:</p>
-            <div class="order-buttons-container">
-                <a href="https://wa.me/c/962792245494" target="_blank" class="btn-order whatsapp-btn">
-                    <img src="icons/icons8-whatsapp-50.png" alt="WhatsApp Icon">
-                    تصفح الكتالوج واطلب (واتساب)
-                </a>
-                
-                <a href="https://instagram.com/wasmprints.jo" target="_blank" class="btn-order instagram-btn">
-                    <img src="icons/icons8-instagram-50.png" alt="Instagram Icon">
-                    راسلنا على انستغرام
-                </a>
-
-                <a href="https://www.facebook.com/wasmprints/" target="_blank" class="btn-order facebook-btn">
-                    <img src="icons/icons8-facebook-50.png" alt="Facebook Icon">
-                    تابعنا على فيسبوك
-                </a>
-            </div>
+        <div class="card glass reveal">
+            <div class="card-img-wrap"><img src="items/item3.jpg" alt="كوب سيراميك"></div>
+            <h3>مجات سيراميك</h3>
+            <p>أكواب قهوة بجودة طباعة عالية</p>
         </div>
-    </section>
 
-    <section class="faq-section" id="faq">
+        <div class="card glass reveal">
+            <div class="card-img-wrap"><img src="items/item5.jpg" alt="توت باج"></div>
+            <h3>توت باج</h3>
+            <p>حقائب قماشية عملية وأنيقة</p>
+        </div>
+
+        <div class="card glass reveal">
+            <div class="card-img-wrap"><img src="items/item2.jpg" alt="مقلمة"></div>
+            <h3>مقلمات</h3>
+            <p>مقلمات مخصصة مطبوعة حسب الطلب</p>
+        </div>
+
+        <div class="card glass reveal">
+            <div class="card-img-wrap"><img src="items/item4.jpg" alt="فاصل كتب"></div>
+            <h3>فواصل كتب</h3>
+            <p>لمحبي القراءة، فواصل بعباراتك الخاصة</p>
+        </div>
+
+    </div>
+</section>
+
+<section class="order-section" id="order">
+    <div class="section-head reveal">
+        <span class="section-tag">اطلب الآن</span>
+        <h2 class="section-title">جاهزون لتنفيذ فكرتك</h2>
+    </div>
+    <div class="glass order-container reveal">
+        <p class="lead">هل أعجبتك منتجاتنا؟ تصفح الكتالوج واطلب مباشرة أو تواصل معنا عبر حساباتنا:</p>
+        <div class="order-buttons-container">
+            <a href="https://wa.me/c/962792245494" target="_blank" class="btn-order whatsapp-btn">
+                <img src="icons/icons8-whatsapp-50.png" alt="WhatsApp Icon">
+                تصفح الكتالوج واطلب (واتساب)
+            </a>
+
+            <a href="https://instagram.com/wasmprints.jo" target="_blank" class="btn-order instagram-btn">
+                <img src="icons/icons8-instagram-50.png" alt="Instagram Icon">
+                راسلنا على انستغرام
+            </a>
+
+            <a href="https://www.facebook.com/wasmprints/" target="_blank" class="btn-order facebook-btn">
+                <img src="icons/icons8-facebook-50.png" alt="Facebook Icon">
+                تابعنا على فيسبوك
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="faq-section" id="faq">
+    <div class="section-head reveal">
+        <span class="section-tag">لديك سؤال؟</span>
         <h2 class="section-title">الأسئلة الشائعة</h2>
-        
-        <details class="glass">
-            <summary>كم يستغرق تجهيز الطلب؟</summary>
-            <p>لأننا نصنع كل قطعة بحُب وخصيصاً لك، يستغرق تجهيز الطلبات والطباعة من يومين إلى 4 أيام عمل قبل تسليمها لشركة الشحن.</p>
-        </details>
+    </div>
 
-        <details class="glass">
-            <summary>هل يتوفر توصيل لجميع المحافظات؟</summary>
-            <p>نعم، نوفر خدمة التوصيل إلى جميع محافظات المملكة الأردنية الهاشمية بأسعار رمزية.</p>
-        </details>
-
-        <details class="glass">
-            <summary>هل يمكنني طباعة تصميمي أو صورتي الخاصة؟</summary>
-            <p>بالتأكيد! متجر "وسم" متخصص بالطباعة حسب الطلب. يمكنك تزويدنا بالصور، أو الشعارات، أو العبارات التي ترغب بها وسنقوم بتنسيقها وطباعتها بأعلى جودة.</p>
-        </details>
-
-        <details class="glass">
-            <summary>ما هي طرق الدفع المتاحة؟</summary>
-            <p>لتسهيل العملية على عملائنا، نوفر الدفع عند الاستلام، بالإضافة إلى إمكانية الدفع المسبق عبر المحافظ الإلكترونية (مثل كليك زين كاش).</p>
-        </details>
-    </section>
-
-    <!-- الفوتر مع معلومات التواصل -->
-    <footer>
-        <div class="footer-contact">
-            <p>الموقع: معان، الأردن</p>
-            <p>هاتف / واتساب: <span dir="ltr">+962 79 224 5494</span></p>
-            <p>البريد الإلكتروني: <a href="mailto:wasmprints@gmail.com">wasmprints@gmail.com</a></p>
+    <div class="faq-item glass reveal">
+        <div class="faq-question">
+            <span class="q-text">كم يستغرق تجهيز الطلب؟</span>
+            <span class="faq-icon"></span>
         </div>
-        <p class="copyright">جميع الحقوق محفوظة &copy; 2026 متجر وسم (Wasm Prints Studio)</p>
-    </footer>
+        <div class="faq-answer">
+            <p>لأننا نصنع كل قطعة بحُب وخصيصاً لك، يستغرق تجهيز الطلبات والطباعة من يومين إلى 4 أيام عمل قبل تسليمها لشركة الشحن.</p>
+        </div>
+    </div>
+
+    <div class="faq-item glass reveal">
+        <div class="faq-question">
+            <span class="q-text">هل يتوفر توصيل لجميع المحافظات؟</span>
+            <span class="faq-icon"></span>
+        </div>
+        <div class="faq-answer">
+            <p>نعم، نوفر خدمة التوصيل إلى جميع محافظات المملكة الأردنية الهاشمية بأسعار رمزية.</p>
+        </div>
+    </div>
+
+    <div class="faq-item glass reveal">
+        <div class="faq-question">
+            <span class="q-text">هل يمكنني طباعة تصميمي أو صورتي الخاصة؟</span>
+            <span class="faq-icon"></span>
+        </div>
+        <div class="faq-answer">
+            <p>بالتأكيد! متجر "وسم" متخصص بالطباعة حسب الطلب. يمكنك تزويدنا بالصور، أو الشعارات، أو العبارات التي ترغب بها وسنقوم بتنسيقها وطباعتها بأعلى جودة.</p>
+        </div>
+    </div>
+
+    <div class="faq-item glass reveal">
+        <div class="faq-question">
+            <span class="q-text">ما هي طرق الدفع المتاحة؟</span>
+            <span class="faq-icon"></span>
+        </div>
+        <div class="faq-answer">
+            <p>لتسهيل العملية على عملائنا، نوفر الدفع عند الاستلام، بالإضافة إلى إمكانية الدفع المسبق عبر المحافظ الإلكترونية (مثل كليك زين كاش).</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-logo">wasmprints</div>
+    <div class="footer-contact">
+        <p>الموقع: معان، الأردن</p>
+        <p>هاتف / واتساب: <span dir="ltr">+962 79 224 5494</span></p>
+        <p>البريد الإلكتروني: <a href="mailto:wasmprints@gmail.com">wasmprints@gmail.com</a></p>
+    </div>
+    <p class="copyright">جميع الحقوق محفوظة &copy; 2026 متجر وسم (Wasm Prints Studio)</p>
+</footer>
+
+<script>
+    const header = document.getElementById('siteHeader');
+    window.addEventListener('scroll', () => {
+        header.classList.toggle('scrolled', window.scrollY > 30);
+    }, { passive: true });
+
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => entry.target.classList.add('in-view'), i % 5 * 90);
+                io.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
+    revealEls.forEach(el => io.observe(el));
+
+    const hero = document.querySelector('.hero');
+    if (window.matchMedia('(hover: hover)').matches) {
+        hero.addEventListener('mousemove', (e) => {
+            const rect = hero.getBoundingClientRect();
+            const mx = ((e.clientX - rect.left) / rect.width) * 100;
+            const my = ((e.clientY - rect.top) / rect.height) * 100;
+            hero.style.setProperty('--mx', mx + '%');
+            hero.style.setProperty('--my', my + '%');
+        });
+
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width - 0.5;
+                const y = (e.clientY - rect.top) / rect.height - 0.5;
+                card.style.transform = `perspective(700px) rotateX(${y * -8}deg) rotateY(${x * 8}deg) translateY(-4px)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(700px) rotateX(0) rotateY(0) translateY(0)';
+            });
+        });
+    }
+
+    document.querySelectorAll('.faq-item').forEach(item => {
+        const question = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+        question.addEventListener('click', () => {
+            const isOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-item.open').forEach(openItem => {
+                if (openItem !== item) {
+                    openItem.classList.remove('open');
+                    openItem.querySelector('.faq-answer').style.maxHeight = null;
+                }
+            });
+            if (isOpen) {
+                item.classList.remove('open');
+                answer.style.maxHeight = null;
+            } else {
+                item.classList.add('open');
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+            }
+        });
+    });
+</script>
 
 </body>
 </html>
